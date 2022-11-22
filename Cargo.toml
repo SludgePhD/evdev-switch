@@ -1,0 +1,12 @@
+[package]
+name = "evdev-switch"
+version = "0.1.0"
+edition = "2021"
+description = "evdev input switch"
+repository = "https://github.com/SludgePhD/evdev-switch"
+license = "GPL-2.0-only" # lmao
+
+[dependencies]
+toml = "0.5.9"
+serde = { version = "1.0.147", features = ["derive"] }
+input-linux = { version = "0.5.0", features = ["with-serde"] }

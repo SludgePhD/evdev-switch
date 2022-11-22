@@ -1,0 +1,20 @@
+# The name of the input device whose events to consume.
+# This is a device name, not a device file path. Device names can be viewed with `sudo evtest`.
+device = "My input device"
+
+# The trigger button or key. As long as this key is held, events are sent to `output-switched`.
+# NOTE: this uses a non-standard "CamelCase" naming for the keys. You can try an invalid key to see
+# the possible options.
+trigger = "ButtonForward"
+
+# The name to use for the output device that receives all events by default.
+# (the "normally-closed" output)
+output-default = "evdev-switch-default"
+
+# The name to use for the output device that receives all events while the trigger key/button is held.
+# (the "normally-open" output)
+output-switched = "evdev-switch-switched"
+
+# Whether to "grab" the original device to make its events unavailable to any other application
+# while evdev-switch runs.
+grab = true
