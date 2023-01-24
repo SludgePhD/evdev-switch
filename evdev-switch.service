@@ -1,0 +1,9 @@
+[Unit]
+Description=Input device switch
+
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/evdev-switch ${HOME}/.config/evdev-switch/config.toml
+
+[Install]
+WantedBy=default.target
