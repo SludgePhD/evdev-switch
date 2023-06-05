@@ -33,5 +33,3 @@ jobs:
 
     - name: Run CI/CD
       run: sludge-cicd
-      env:
-        CRATES_IO_TOKEN: ${{ secrets.CRATES_IO_TOKEN }}
