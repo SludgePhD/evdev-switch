@@ -1,18 +1,17 @@
 use std::{fs, path::Path};
 
+use evdevil::event::Key;
 use serde::Deserialize;
 
-#[derive(Deserialize)]
+#[derive(Clone, Deserialize)]
 #[serde(rename_all = "kebab-case")]
 pub struct Config {
     pub device: String,
-    pub trigger: input_linux::Key,
+    pub trigger: Key,
     pub output_default: String,
     pub output_switched: String,
     #[serde(default)]
     pub grab: bool,
-    #[serde(default)]
-    pub debug: bool,
 }
 
 impl Config {

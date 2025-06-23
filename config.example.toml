@@ -1,11 +1,11 @@
 # The name of the input device whose events to consume.
-# This is a device name, not a device file path. Device names can be viewed with `sudo evtest`.
+# This is a device name, not a device file path. Device names can be viewed with `evtest`.
 device = "My input device"
 
 # The trigger button or key. As long as this key is held, events are sent to `output-switched`.
-# NOTE: this uses a non-standard "CamelCase" naming for the keys. You can try an invalid key to see
-# the possible options.
-trigger = "ButtonForward"
+# NOTE: this uses the standard evdev key and button names. You can use `evtest` to see the supported
+# keys and buttons of your device.
+trigger = "BTN_FORWARD"
 
 # The name to use for the output device that receives all events by default.
 # (the "normally-closed" output)
