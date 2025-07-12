@@ -7,6 +7,6 @@ repository = "https://github.com/SludgePhD/evdev-switch"
 license = "GPL-2.0-only" # lmao
 
 [dependencies]
-toml = "0.5.9"
+toml = { version = "0.9.2", default-features = false, features = ["parse", "serde"] }
 serde = { version = "1.0.147", features = ["derive"] }
 evdevil = { version = "0.2.1", features = ["serde"] }
