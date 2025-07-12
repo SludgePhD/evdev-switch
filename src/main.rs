@@ -24,7 +24,7 @@ fn main() -> Result<()> {
         let device = res?;
         if let Ok(name) = device.name() {
             if name == config.device {
-                println!("found '{name}' at '{}'", device.path().unwrap().display());
+                println!("found '{name}' at '{}'", device.path().display());
                 let config = config.clone();
                 thread::spawn(move || match device_main(device, &config) {
                     Ok(()) => {}
@@ -62,6 +62,7 @@ fn device_main(evdev: Evdev, config: &Config) -> io::Result<()> {
 
     println!("listening for events");
     let mut reader = evdev.into_reader()?;
+    let mut reports = reader.reports();
 
     let mut events_default = Vec::new();
     let mut events_switched = Vec::new();
@@ -76,11 +77,13 @@ fn device_main(evdev: Evdev, config: &Config) -> io::Result<()> {
 
         events_default.clear();
         events_switched.clear();
-        let report = reader.next_report()?;
+        let report = reports
+            .next()
+            .expect("blocking iterator should be infinite")?;
 
         for event in report {
             match event.kind() {
-                Some(EventKind::Key(ev)) if ev.key() == config.trigger => {
+                EventKind::Key(ev) if ev.key() == config.trigger => {
                     if ev.state() == KeyState::RELEASED {
                         // Trigger button was released -> toggle `switched` state on next
                         // iteration, to ensure that the button release event goes to the
